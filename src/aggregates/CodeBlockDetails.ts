@@ -2,7 +2,7 @@ import { CodeBlock } from 'src/entities/CodeBlock';
 import { Comment } from 'src/entities/Comment';
 import { IdComment } from 'src/value-objects/IdComment';
 
-export class CodeWithComments {
+export class CodeBlockDetails {
   private codeBlock: CodeBlock;
   private comments: Comment[];
   constructor(codeBlock: CodeBlock, comments: Comment[] = []) {

@@ -1,44 +1,44 @@
-import { CodeWithComments } from 'src/aggregates/CodeWithComments';
+import { CodeBlockDetails } from '../aggregates/CodeBlockDetails';
 import { CodeBlock } from 'src/entities/CodeBlock';
 import { Comment } from 'src/entities/Comment';
 
-export class CodeWithCommentsRepository {
-  private codeWithComments: CodeWithComments[] = [];
+export class CodeBlockDetailsRepository {
+  private CodeBlockDetails: CodeBlockDetails[] = [];
 
-  getAll(): CodeWithComments[] {
-    return this.codeWithComments;
+  getAll(): CodeBlockDetails[] {
+    return this.CodeBlockDetails;
   }
 
   getCommentsFromCodeBlock(codeBlockId: number): Comment[] {
-    const codeWithComments = this.codeWithComments.find(
+    const CodeBlockDetails = this.CodeBlockDetails.find(
       (cwc) => cwc.getCodeBlock().getId().getValue() === codeBlockId,
     );
-    return codeWithComments ? codeWithComments.getComments() : [];
+    return CodeBlockDetails ? CodeBlockDetails.getComments() : [];
   }
 
   findCodeBlockById(codeBlockId: number): CodeBlock | null {
-    const codeWithComments = this.codeWithComments.find(
+    const CodeBlockDetails = this.CodeBlockDetails.find(
       (cwc) => cwc.getCodeBlock().getId().getValue() === codeBlockId,
     );
-    return codeWithComments ? codeWithComments.getCodeBlock() : null;
+    return CodeBlockDetails ? CodeBlockDetails.getCodeBlock() : null;
   }
 
-  findCodeBlockWithComments(codeBlockId: number): CodeWithComments | null {
-    const codeWithComments = this.codeWithComments.find(
+  findCodeBlockWithComments(codeBlockId: number): CodeBlockDetails | null {
+    const CodeBlockDetails = this.CodeBlockDetails.find(
       (cwc) => cwc.getCodeBlock().getId().getValue() === codeBlockId,
     );
-    return codeWithComments || null;
+    return CodeBlockDetails || null;
   }
 
   addCodeBlock(codeBlock: CodeBlock) {
-    const newCodeWithComments = new CodeWithComments(codeBlock);
-    this.codeWithComments.push(newCodeWithComments);
+    const newCodeBlockDetails = new CodeBlockDetails(codeBlock);
+    this.CodeBlockDetails.push(newCodeBlockDetails);
   }
 
   addCommentToCodeBlock(codeBlockId: number, comment: Comment): void {
-    const codeWithComments = this.findCodeBlockWithComments(codeBlockId);
-    if (codeWithComments) {
-      codeWithComments.addComment(comment);
+    const CodeBlockDetails = this.findCodeBlockWithComments(codeBlockId);
+    if (CodeBlockDetails) {
+      CodeBlockDetails.addComment(comment);
     }
   }
 

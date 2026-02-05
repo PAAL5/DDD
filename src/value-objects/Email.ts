@@ -1,15 +1,15 @@
 export class Email {
-    private email: string;
+  private email: string;
 
-    constructor(email: string) {
-        this.email = email;
-    }
+  constructor(email: string) {
+    this.email = email;
+  }
 
-    public getEmail(): string {
-        return this.email;
-    }
+  public getEmail(): string {
+    return this.email;
+  }
 
-    public equals(other: Email): boolean {
-        return this.email === other.getEmail();
-    }
+  public equals(other: Email): boolean {
+    return this.email === other.getEmail();
+  }
 }
