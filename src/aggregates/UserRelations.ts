@@ -1,22 +1,21 @@
-import { User } from 'src/entities/User';
-import { Id } from 'src/value-objects/Id';
+import { IdUser } from 'src/value-objects/IdUser';
 
 export class UserRelations {
-  private relations: User[];
+  private relationsId: IdUser[];
 
-  constructor(relations: User[] = []) {
-    this.relations = relations;
+  constructor(relationsId: IdUser[] = []) {
+    this.relationsId = relationsId;
   }
 
-  public addRelation(user: User): void {
-    this.relations.push(user);
+  public addRelation(userId: IdUser): void {
+    this.relationsId.push(userId);
   }
 
-  public getRelations(): User[] {
-    return this.relations;
+  public getRelations(): IdUser[] {
+    return [...this.relationsId];
   }
 
-  public findRelationById(userId: Id): User | undefined {
-    return this.relations.find((user) => user.getId() === userId);
+  public findRelationById(userId: IdUser): IdUser | undefined {
+    return this.relationsId.find((id) => id.equals(userId));
   }
 }

@@ -1,19 +1,19 @@
-import { Id } from 'src/value-objects/Id';
+import { IdCodeBlock } from 'src/value-objects/IdCodeBlock';
 import { User } from './User';
 import { CodeBlockContent } from 'src/value-objects/CodeBlockContent';
 
 export class CodeBlock {
-  private id: Id;
+  private id: IdCodeBlock;
   private author: User;
   private content: CodeBlockContent;
 
-  constructor(id: Id, author: User, content: CodeBlockContent) {
+  constructor(id: IdCodeBlock, author: User, content: CodeBlockContent) {
     this.id = id;
     this.author = author;
     this.content = content;
   }
 
-  public getId(): Id {
+  public getId(): IdCodeBlock {
     return this.id;
   }
 
@@ -30,6 +30,6 @@ export class CodeBlock {
   }
 
   public equals(other: CodeBlock): boolean {
-    return this.id === other.getId();
+    return this.id.equals(other.getId());
   }
 }

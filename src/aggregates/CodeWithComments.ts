@@ -1,6 +1,6 @@
 import { CodeBlock } from 'src/entities/CodeBlock';
 import { Comment } from 'src/entities/Comment';
-import { Id } from 'src/value-objects/Id';
+import { IdComment } from 'src/value-objects/IdComment';
 
 export class CodeWithComments {
   private codeBlock: CodeBlock;
@@ -15,14 +15,14 @@ export class CodeWithComments {
   }
 
   public getComments(): Comment[] {
-    return this.comments;
+    return [...this.comments];
   }
 
   public addComment(comment: Comment): void {
     this.comments.push(comment);
   }
 
-  public findCommentById(commentId: Id): Comment | undefined {
-    return this.comments.find((comment) => comment.getId() === commentId);
+  public findCommentById(commentId: IdComment): Comment | undefined {
+    return this.comments.find((comment) => comment.getId().equals(commentId));
   }
 }
