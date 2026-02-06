@@ -4,6 +4,7 @@ import { CodeBlockRepository } from './../repositories/CodeBlockRepository';
 import { CommentRepository } from './../repositories/CommentRepository';
 import { CodeBlockDetails } from 'src/aggregates/CodeBlockDetails';
 import { Comment } from 'src/entities/Comment';
+import { CodeBlockNotFoundError } from 'src/errors/CodeBlockNotFoundError';
 
 export class CodeBlockDetailsRepository {
   private static instance: CodeBlockDetailsRepository;
@@ -30,10 +31,10 @@ export class CodeBlockDetailsRepository {
     return this.codeBlockRepo.findById(id);
   }
 
-  getCodeBlockDetails(id: IdCodeBlock): CodeBlockDetails | null {
+  getCodeBlockDetails(id: IdCodeBlock): CodeBlockDetails {
     const codeBlock = this.codeBlockRepo.findById(id);
     if (!codeBlock) {
-      return null;
+      throw new CodeBlockNotFoundError();
     }
     const comments = this.commentRepo.findAllCommentsByCodeBlockId(id);
     return new CodeBlockDetails(codeBlock, comments);
