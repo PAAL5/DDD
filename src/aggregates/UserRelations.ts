@@ -14,15 +14,17 @@ export class UserRelations {
     return this.user;
   }
 
-  public addRelation(userId: IdUser, toAddUser: IdUser): void {
-    if (userId.equals(this.user.getId())) {
+  public addRelation(toAddUser: IdUser): void {
       if (!this.relationsId.some((id) => id.equals(toAddUser))) {
         this.relationsId.push(toAddUser);
       }
-    }
   }
 
-  public getRelations(userId: IdUser): IdUser[] {
-    return userId.equals(this.user.getId()) ? this.relationsId : [];
+  public getRelations(): IdUser[] {
+    return this.relationsId;
+  }
+
+  public hasRelation(toCheckUser: IdUser): boolean {
+      return this.relationsId.some((id) => id.equals(toCheckUser));
   }
 }

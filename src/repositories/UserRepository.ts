@@ -9,8 +9,8 @@ export class UserRepository {
   }
 
   public getUsers(): User[] {
-    return this.users.map((ur) => {
-      return ur.getUser();
+    return this.users.map((usr) => {
+      return usr.getUser();
     });
   }
 
