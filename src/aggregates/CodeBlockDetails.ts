@@ -2,9 +2,9 @@ import { CodeBlock } from 'src/entities/CodeBlock';
 import { Comment } from 'src/entities/Comment';
 import { CommentNotExistingError } from './../errors/CommentNotExistingError';
 import { IdComment } from 'src/value-objects/IdComment';
-import { DomainEvent } from 'src/domain-events/events/DomainEvent';
-import { EventDispatcher } from 'src/domain-events/EventDispatcher';
-import { CommentCreated } from 'src/domain-events/events/CommentCreated';
+import { DomainEvent } from '../domain-events/events/DomainEvent';
+import { EventDispatcher } from '../domain-events/EventDispatcher';
+import { CommentCreated } from '../domain-events/events/CommentCreated';
 
 export class CodeBlockDetails {
   private codeBlock: CodeBlock;

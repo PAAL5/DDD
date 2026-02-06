@@ -1,11 +1,11 @@
-import { DomainEventRepository } from "src/repositories/DomainEventRepository";
+import { DomainEventRepository } from "../repositories/DomainEventRepository";
 import { CommentCreated } from "./events/CommentCreated";
 import { DomainEvent } from "./events/DomainEvent";
 import { UserCreated } from "./events/UserCreated";
 import { CommentCreatedHandler } from "./handlers/CommentCreatedHandler";
 import { DomainEventHandler } from "./handlers/DomainEventHandler";
 import { UserCreatedHandler } from "./handlers/UserCreatedhandler";
-import { UnknownDomainEventError } from "src/errors/UnknownDomainEvent";
+import { UnknownDomainEventError } from "../errors/UnknownDomainEvent";
 
 export class EventDispatcher {
     private static instance: EventDispatcher;
