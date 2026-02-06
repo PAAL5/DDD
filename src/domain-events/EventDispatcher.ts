@@ -1,11 +1,15 @@
-import { UnknownDomainEventError } from "../errors/UnknownDomainEvent";
+import { DomainEventRepository } from "src/repositories/DomainEventRepository";
+import { CommentCreated } from "./events/CommentCreated";
 import { DomainEvent } from "./events/DomainEvent";
 import { UserCreated } from "./events/UserCreated";
+import { CommentCreatedHandler } from "./handlers/CommentCreatedHandler";
 import { DomainEventHandler } from "./handlers/DomainEventHandler";
 import { UserCreatedHandler } from "./handlers/UserCreatedhandler";
+import { UnknownDomainEventError } from "src/errors/UnknownDomainEvent";
 
 export class EventDispatcher {
     private static instance: EventDispatcher;
+    private domainEventRepository: DomainEventRepository = DomainEventRepository.getInstance();
     
     private constructor () {}
 
@@ -17,7 +21,11 @@ export class EventDispatcher {
     }
 
     public dispatch(event: DomainEvent): DomainEventHandler {
-        if(event instanceof UserCreated) return new UserCreatedHandler();
-        throw new UnknownDomainEventError();
+        let handler: DomainEventHandler| null = null;
+        if(event instanceof UserCreated) handler = new UserCreatedHandler();
+        if(event instanceof CommentCreated) handler = new CommentCreatedHandler();
+        this.domainEventRepository.add(event);
+        if(handler == null) throw new UnknownDomainEventError();
+        return handler;
     }
 }
