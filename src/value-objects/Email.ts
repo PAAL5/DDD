@@ -1,4 +1,4 @@
-import { InvalidEmailError } from "src/errors/InvalidEmailError";
+import { InvalidEmailError } from './../errors/InvalidEmailError';
 
 export class Email {
   public readonly email: string;
@@ -9,7 +9,7 @@ export class Email {
   }
 
   private isValidEmail(email: string): void {
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       throw new InvalidEmailError(email);
     }
   }

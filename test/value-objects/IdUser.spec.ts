@@ -3,7 +3,7 @@ import { IdUser } from '../../src/value-objects/IdUser';
 describe('IdUser', () => {
   it('stores and returns content', () => {
     const content = new IdUser(1);
-    expect(content.getValue()).toBe(1);
+    expect(content.value).toBe(1);
   });
 
   it('compares content equality', () => {

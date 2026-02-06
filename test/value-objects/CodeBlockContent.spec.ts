@@ -3,7 +3,7 @@ import { CodeBlockContent } from '../../src/value-objects/CodeBlockContent';
 describe('CodeBlockContent', () => {
   it('stores and returns content', () => {
     const content = new CodeBlockContent('test');
-    expect(content.getCodeBlockContent()).toBe('test');
+    expect(content.codeBlockContent).toBe('test');
   });
 
   it('compares content equality', () => {

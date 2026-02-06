@@ -3,7 +3,7 @@ import { IdComment } from '../../src/value-objects/IdComment';
 describe('IdComment', () => {
   it('stores and returns content', () => {
     const content = new IdComment(1);
-    expect(content.getValue()).toBe(1);
+    expect(content.value).toBe(1);
   });
 
   it('compares content equality', () => {

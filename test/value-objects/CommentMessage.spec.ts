@@ -3,7 +3,7 @@ import { CommentMessage } from '../../src/value-objects/CommentMessage';
 describe('CommentMessage', () => {
   it('stores and returns content', () => {
     const content = new CommentMessage('test');
-    expect(content.getCommentMessage()).toBe('test');
+    expect(content.commentMessage).toBe('test');
   });
 
   it('compares content equality', () => {

@@ -1,6 +1,6 @@
 import { CodeBlock } from 'src/entities/CodeBlock';
 import { Comment } from 'src/entities/Comment';
-import { CommentNotExistingError } from 'src/errors/CommentNotExistingError';
+import { CommentNotExistingError } from './../errors/CommentNotExistingError';
 import { IdComment } from 'src/value-objects/IdComment';
 
 export class CodeBlockDetails {
@@ -33,5 +33,4 @@ export class CodeBlockDetails {
       throw new CommentNotExistingError();
     }
   }
-
 }

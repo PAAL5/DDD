@@ -3,7 +3,7 @@ import { IdCodeBlock } from '../../src/value-objects/IdCodeBlock';
 describe('IdCodeBlock', () => {
   it('stores and returns content', () => {
     const content = new IdCodeBlock(1);
-    expect(content.getValue()).toBe(1);
+    expect(content.value).toBe(1);
   });
 
   it('compares content equality', () => {
