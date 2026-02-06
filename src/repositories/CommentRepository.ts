@@ -1,5 +1,6 @@
 import { IdComment } from 'src/value-objects/IdComment';
 import { Comment } from 'src/entities/Comment';
+import { IdCodeBlock } from 'src/value-objects/IdCodeBlock';
 
 export class CommentRepository {
   private comments: Comment[] = [];
@@ -22,6 +23,10 @@ export class CommentRepository {
   findById(id: IdComment): Comment | null {
     const comment = this.comments.find((c) => c.id.equals(id));
     return comment || null;
+  }
+
+  findAllCommentsByCodeBlockId(idCodeBlock: IdCodeBlock): Comment[] {
+    return this.comments.filter((c) => c.idCodeBlock.equals(idCodeBlock));
   }
 
   add(comment: Comment): void {

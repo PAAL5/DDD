@@ -6,7 +6,7 @@ export class CodeBlockRepository {
 
   private static instance: CodeBlockRepository;
 
-  private constructor() {}  
+  private constructor() {}
 
   public static getInstance(): CodeBlockRepository {
     if (!CodeBlockRepository.instance) {
@@ -24,18 +24,7 @@ export class CodeBlockRepository {
     return codeBlock || null;
   }
 
-  add(codeBlock: CodeBlock): void {
+  save(codeBlock: CodeBlock): void {
     this.codeBlocks.push(codeBlock);
-  }
-
-  update(codeBlock: CodeBlock): void {
-    const index = this.codeBlocks.findIndex((cb) => cb.id.equals(codeBlock.id));
-    if (index !== -1) {
-      this.codeBlocks[index] = codeBlock;
-    }
-  }
-
-  delete(id: IdCodeBlock): void {
-    this.codeBlocks = this.codeBlocks.filter((cb) => !cb.id.equals(id));
   }
 }
