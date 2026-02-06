@@ -4,6 +4,17 @@ import { Comment } from 'src/entities/Comment';
 export class CommentRepository {
   private comments: Comment[] = [];
 
+  private static instance: CommentRepository;
+
+  private constructor() {}
+
+  public static getInstance(): CommentRepository {
+    if (!CommentRepository.instance) {
+      CommentRepository.instance = new CommentRepository();
+    }
+    return CommentRepository.instance;
+  }
+
   getAll(): Comment[] {
     return this.comments;
   }

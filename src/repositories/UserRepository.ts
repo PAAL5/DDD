@@ -5,6 +5,17 @@ import { IdUser } from 'src/value-objects/IdUser';
 export class UserRepository {
   private users: User[] = [];
 
+  private static instance: UserRepository;
+
+  private constructor() {}
+
+  public static getInstance(): UserRepository {
+    if (!UserRepository.instance) {
+      UserRepository.instance = new UserRepository();
+    }
+    return UserRepository.instance;
+  }
+
   getAll(): User[] {
     return this.users;
   }
