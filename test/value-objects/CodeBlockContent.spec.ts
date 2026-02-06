@@ -1,3 +1,4 @@
+import { expect, describe, it } from '@jest/globals';
 import { CodeBlockContent } from '../../src/value-objects/CodeBlockContent';
 
 describe('CodeBlockContent', () => {

@@ -1,3 +1,4 @@
+import { expect, describe, it } from '@jest/globals';
 import { CommentMessage } from '../../src/value-objects/CommentMessage';
 
 describe('CommentMessage', () => {

@@ -29,7 +29,7 @@ export class CodeBlockDetails {
   }
 
   private commentExists(commentId: IdComment): void {
-    if (!this.findCommentById(commentId)) {
+    if (!this.comments.some((comment) => comment.id.equals(commentId))) {
       throw new CommentNotExistingError();
     }
   }

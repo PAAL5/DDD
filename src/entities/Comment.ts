@@ -1,7 +1,7 @@
 import { User } from './User';
-import { IdComment } from 'src/value-objects/IdComment';
-import { CommentMessage } from 'src/value-objects/CommentMessage';
-import { IdCodeBlock } from 'src/value-objects/IdCodeBlock';
+import { IdComment } from './../value-objects/IdComment';
+import { CommentMessage } from './../value-objects/CommentMessage';
+import { IdCodeBlock } from './../value-objects/IdCodeBlock';
 
 export class Comment {
   public readonly id: IdComment;
@@ -9,16 +9,17 @@ export class Comment {
   public readonly author: User;
   public content: CommentMessage;
 
-  constructor(
-    id: IdComment,
-    idCodeBlock: IdCodeBlock,
-    author: User,
-    content: CommentMessage,
-  ) {
-    this.id = id;
+  private static lastId: number = 0;
+
+  constructor(idCodeBlock: IdCodeBlock, author: User, content: CommentMessage) {
+    this.id = Comment.generateId();
     this.idCodeBlock = idCodeBlock;
     this.author = author;
     this.content = content;
+  }
+
+  private static generateId(): IdComment {
+    return new IdComment(++this.lastId);
   }
 
   public equals(other: Comment): boolean {

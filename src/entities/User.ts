@@ -30,7 +30,7 @@ export class User {
   private static emailAlreadyUsed(email: Email): void {
     const existingUser = this.userRepository.findByEmail(email);
     if (existingUser) {
-      throw new Error("Email already used");
+      throw new Error('Email already used');
     }
   }
 

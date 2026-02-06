@@ -1,3 +1,4 @@
+import { expect, describe, it } from '@jest/globals';
 import { Email } from '../../src/value-objects/Email';
 
 describe('Email', () => {
