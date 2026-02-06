@@ -11,21 +11,21 @@ export class CodeBlockDetailsRepository {
 
   getCommentsFromCodeBlock(codeBlockId: number): Comment[] {
     const CodeBlockDetails = this.CodeBlockDetails.find(
-      (cwc) => cwc.getCodeBlock().getId().getValue() === codeBlockId,
+      (cwc) => cwc.getCodeBlock().id.value === codeBlockId,
     );
     return CodeBlockDetails ? CodeBlockDetails.getComments() : [];
   }
 
   findCodeBlockById(codeBlockId: number): CodeBlock | null {
     const CodeBlockDetails = this.CodeBlockDetails.find(
-      (cwc) => cwc.getCodeBlock().getId().getValue() === codeBlockId,
+      (cwc) => cwc.getCodeBlock().id.value === codeBlockId,
     );
     return CodeBlockDetails ? CodeBlockDetails.getCodeBlock() : null;
   }
 
   findCodeBlockWithComments(codeBlockId: number): CodeBlockDetails | null {
     const CodeBlockDetails = this.CodeBlockDetails.find(
-      (cwc) => cwc.getCodeBlock().getId().getValue() === codeBlockId,
+      (cwc) => cwc.getCodeBlock().id.value === codeBlockId,
     );
     return CodeBlockDetails || null;
   }
@@ -47,7 +47,7 @@ export class CodeBlockDetailsRepository {
     if (codeBlock) {
       const comment = codeBlock
         .getComments()
-        .find((c) => c.getId().getValue() === commentId);
+        .find((c) => c.id.value === commentId);
       return comment || null;
     }
     return null;
