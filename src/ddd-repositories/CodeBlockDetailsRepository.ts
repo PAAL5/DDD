@@ -40,10 +40,10 @@ export class CodeBlockDetailsRepository {
   }
 
   addCodeBlock(codeBlock: CodeBlock): void {
-    this.codeBlockRepo.save(codeBlock);
+    this.codeBlockRepo.add(codeBlock);
   }
 
   addCodeBlockComment(comment: Comment): void {
-    this.commentRepo.save(comment);
+    this.commentRepo.add(comment);
   }
 }

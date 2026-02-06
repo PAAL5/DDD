@@ -14,19 +14,19 @@ const mockUser = User.register(
 );
 
 const mockCodeBlock = new CodeBlock(
-  mockUser,
+  mockUser.id,
   new CodeBlockContent('console.log("Hello, world!");'),
 );
 
 const mockComment = new Comment(
   mockCodeBlock.id,
-  mockUser,
+  mockUser.id,
   new CommentMessage('This is a comment'),
 );
 
 const mockComment2 = new Comment(
   mockCodeBlock.id,
-  mockUser,
+  mockUser.id,
   new CommentMessage('This is another comment'),
 );
 

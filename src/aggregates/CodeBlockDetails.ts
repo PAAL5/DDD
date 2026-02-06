@@ -44,7 +44,8 @@ export class CodeBlockDetails {
     const events = this.releaseEvents();
     const eventDispatcher = EventDispatcher.getInstance();
     events.forEach((event) => {
-      eventDispatcher.dispatch(event);
+      const handler = eventDispatcher.dispatch(event);
+      handler.handle(event);
     });
   }
 
