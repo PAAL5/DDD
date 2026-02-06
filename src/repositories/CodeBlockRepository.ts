@@ -24,7 +24,7 @@ export class CodeBlockRepository {
     return codeBlock || null;
   }
 
-  save(codeBlock: CodeBlock): void {
+  add(codeBlock: CodeBlock): void {
     this.codeBlocks.push(codeBlock);
   }
 }

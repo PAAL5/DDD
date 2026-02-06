@@ -9,7 +9,7 @@ export class User {
 
   private static lastId: number = 0;
 
-  private constructor(id: IdUser, name: UserName, email: Email) {
+  public constructor(id: IdUser, name: UserName, email: Email) {
     this.id = id;
     this.name = name;
     this.email = email;

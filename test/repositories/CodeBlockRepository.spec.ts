@@ -12,7 +12,7 @@ const mockUser = User.register(
 );
 
 const mockCodeBlock = new CodeBlock(
-  mockUser,
+  mockUser.id,
   new CodeBlockContent('console.log("Hello, world!");'),
 );
 
@@ -26,7 +26,7 @@ describe('CodeBlockRepository', () => {
   it('should add and retrieve code blocks', () => {
     const repo = CodeBlockRepository.getInstance();
     expect(repo.getAll()).toEqual([]);
-    repo.save(mockCodeBlock);
+    repo.add(mockCodeBlock);
     const codeBlocks = repo.getAll();
     expect(codeBlocks).toContain(mockCodeBlock);
   });

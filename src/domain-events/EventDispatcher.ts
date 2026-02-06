@@ -6,6 +6,8 @@ import { CommentCreatedHandler } from "./handlers/CommentCreatedHandler";
 import { DomainEventHandler } from "./handlers/DomainEventHandler";
 import { UserCreatedHandler } from "./handlers/UserCreatedhandler";
 import { UnknownDomainEventError } from "../errors/UnknownDomainEvent";
+import { CodeBlockPublished } from "./events/CodeBlockPublished";
+import { CodeBlockPublishedHandler } from "./handlers/CodeBlockPublishedHandler";
 
 export class EventDispatcher {
     private static instance: EventDispatcher;
@@ -24,6 +26,7 @@ export class EventDispatcher {
         let handler: DomainEventHandler| null = null;
         if(event instanceof UserCreated) handler = new UserCreatedHandler();
         if(event instanceof CommentCreated) handler = new CommentCreatedHandler();
+        if(event instanceof CodeBlockPublished) handler = new CodeBlockPublishedHandler();
         this.domainEventRepository.add(event);
         if(handler == null) throw new UnknownDomainEventError();
         return handler;
