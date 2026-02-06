@@ -1,7 +1,7 @@
 import { InvalidEmailError } from "src/errors/InvalidEmailError";
 
 export class Email {
-  private email: string;
+  public readonly email: string;
 
   constructor(email: string) {
     this.isValidEmail(email);
@@ -14,11 +14,7 @@ export class Email {
     }
   }
 
-  public getEmail(): string {
-    return this.email;
-  }
-
   public equals(other: Email): boolean {
-    return this.email === other.getEmail();
+    return this.email === other.email;
   }
 }

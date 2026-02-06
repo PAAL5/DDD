@@ -3,9 +3,9 @@ import { User } from './User';
 import { CodeBlockContent } from 'src/value-objects/CodeBlockContent';
 
 export class CodeBlock {
-  private id: IdCodeBlock;
-  private author: User;
-  private content: CodeBlockContent;
+  public readonly id: IdCodeBlock;
+  public readonly author: User;
+  public content: CodeBlockContent;
 
   constructor(id: IdCodeBlock, author: User, content: CodeBlockContent) {
     this.id = id;
@@ -13,23 +13,7 @@ export class CodeBlock {
     this.content = content;
   }
 
-  public getId(): IdCodeBlock {
-    return this.id;
-  }
-
-  public getAuthor(): User {
-    return this.author;
-  }
-
-  public getContent(): CodeBlockContent {
-    return this.content;
-  }
-
-  public setContent(content: CodeBlockContent): void {
-    this.content = content;
-  }
-
   public equals(other: CodeBlock): boolean {
-    return this.id.equals(other.getId());
+    return this.id.equals(other.id);
   }
 }

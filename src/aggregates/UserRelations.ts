@@ -1,5 +1,6 @@
 import { IdUser } from 'src/value-objects/IdUser';
 import { User } from 'src/entities/User';
+import { RelationAlreadyExistingError } from 'src/errors/RelationAlreadyExistingError';
 
 export class UserRelations {
   private user: User;
@@ -15,9 +16,12 @@ export class UserRelations {
   }
 
   public addRelation(toAddUser: IdUser): void {
-      if (!this.relationsId.some((id) => id.equals(toAddUser))) {
+        this.relationAlreadyExists(toAddUser);
         this.relationsId.push(toAddUser);
-      }
+  }
+
+  private relationAlreadyExists(toAddUser: IdUser): void {
+      if(this.hasRelation(toAddUser)) throw new RelationAlreadyExistingError();
   }
 
   public getRelations(): IdUser[] {

@@ -1,5 +1,6 @@
 import { CodeBlock } from 'src/entities/CodeBlock';
 import { Comment } from 'src/entities/Comment';
+import { CommentNotExistingError } from 'src/errors/CommentNotExistingError';
 import { IdComment } from 'src/value-objects/IdComment';
 
 export class CodeBlockDetails {
@@ -23,6 +24,14 @@ export class CodeBlockDetails {
   }
 
   public findCommentById(commentId: IdComment): Comment | undefined {
-    return this.comments.find((comment) => comment.getId().equals(commentId));
+    this.commentExists(commentId);
+    return this.comments.find((comment) => comment.id.equals(commentId));
   }
+
+  private commentExists(commentId: IdComment): void {
+    if (!this.findCommentById(commentId)) {
+      throw new CommentNotExistingError();
+    }
+  }
+
 }

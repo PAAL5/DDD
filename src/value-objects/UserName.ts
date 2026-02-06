@@ -1,15 +1,11 @@
 export class UserName {
-  private userName: string;
+  public readonly userName: string;
 
   constructor(userName: string) {
     this.userName = userName;
   }
 
-  public getUserName(): string {
-    return this.userName;
-  }
-
   public equals(other: UserName): boolean {
-    return this.userName === other.getUserName();
+    return this.userName === other.userName;
   }
 }

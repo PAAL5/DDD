@@ -1,15 +1,11 @@
 export class CodeBlockContent {
-  private codeBlockContent: string;
+  public readonly codeBlockContent: string;
 
   constructor(codeBlockContent: string) {
     this.codeBlockContent = codeBlockContent;
   }
 
-  public getCodeBlockContent(): string {
-    return this.codeBlockContent;
-  }
-
   public equals(other: CodeBlockContent): boolean {
-    return this.codeBlockContent === other.getCodeBlockContent();
+    return this.codeBlockContent === other.codeBlockContent;
   }
 }
