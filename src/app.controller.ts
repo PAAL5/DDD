@@ -53,20 +53,7 @@ export class AppController {
       );
       return { message: 'Comment added successfully' };
     } catch (error) {
-      if (error instanceof CodeBlockNotFoundError) {
-        throw new HttpException(
-          {
-            error: 'Code block not found',
-          },
-          404,
-        );
-      }
-      throw new HttpException(
-        {
-          error: 'An error occurred while adding the comment',
-        },
-        500,
-      );
+      this.handleError(error);
     }
   }
 
@@ -77,13 +64,8 @@ export class AppController {
       const userIdObj = new IdUser(1); // Normalement dans le token
       new CodePublication().publishCode(userIdObj, contentObj);
       return { message: 'Code block added successfully' };
-    } catch {
-      throw new HttpException(
-        {
-          error: 'An error occurred while adding the code block',
-        },
-        500,
-      );
+    } catch (error) {
+      this.handleError(error);
     }
   }
 
@@ -93,29 +75,30 @@ export class AppController {
       const codeBlockId = parseInt(id);
       const codeBlockIdObj = new IdCodeBlock(codeBlockId);
       const details = this.codeBlockRepo.getCodeBlockDetails(codeBlockIdObj);
-      if (!details) {
-        return { error: 'Code block not found' };
-      }
       const returnedDetails = {
         codeBlock: details.getCodeBlock(),
         comments: details.getComments(),
       };
       return returnedDetails;
     } catch (error) {
-      if (error instanceof CodeBlockNotFoundError) {
-        throw new HttpException(
-          {
-            error: 'Code block not found',
-          },
-          404,
-        );
-      }
+      this.handleError(error);
+    }
+  }
+
+  private handleError(error: unknown) {
+    if (error instanceof CodeBlockNotFoundError) {
       throw new HttpException(
         {
-          error: 'An error occurred while fetching the code block details',
+          error: 'Code block not found',
         },
-        500,
+        404,
       );
     }
+    throw new HttpException(
+      {
+        error: 'An error occurred while processing the request',
+      },
+      500,
+    );
   }
 }
