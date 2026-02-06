@@ -1,56 +1,36 @@
-import { UserRelations } from 'src/aggregates/UserRelations';
 import { User } from 'src/entities/User';
+import { Email } from 'src/value-objects/Email';
+import { IdUser } from 'src/value-objects/IdUser';
 
 export class UserRepository {
-  private users: UserRelations[] = [];
+  private users: User[] = [];
 
-  public getUsersWithRelations(): UserRelations[] {
-    return [...this.users];
+  getAll(): User[] {
+    return this.users;
   }
 
-  public getUsers(): User[] {
-    return this.users.map((usr) => {
-      return usr.getUser();
-    });
+  findById(id: IdUser): User | null {
+    const user = this.users.find((usr) => usr.id.equals(id));
+    return user || null;
   }
 
-  public getUserById(id: number): User | null {
-    const userRelations = this.users.find(
-      (ur) => ur.getUser().id.value === id,
-    );
-    return userRelations ? userRelations.getUser() : null;
+  findByEmail(email: Email): User | null {
+    const user = this.users.find((usr) => usr.email.equals(email));
+    return user || null;
   }
 
-  public getUserByIdWithRelations(id: number): UserRelations | null {
-    const userRelations = this.users.find(
-      (ur) => ur.getUser().id.value === id,
-    );
-    return userRelations || null;
+  add(user: User): void {
+    this.users.push(user);
   }
 
-  public addUser(user: User): void {
-    const newUserRelations = new UserRelations(user);
-    this.users.push(newUserRelations);
-  }
-
-  public addRelation(userId: , toAddUserId: number): void {
-    const userRelations = this.getUserByIdWithRelations(userId);
-    const toAddUser = this.getUserById(toAddUserId);
-    if (userRelations && toAddUser) {
-      userRelations.addRelation(
-        toAddUser.id,
-      );
+  update(user: User): void {
+    const index = this.users.findIndex((usr) => usr.id.equals(user.id));
+    if (index !== -1) {
+      this.users[index] = user;
     }
   }
 
-  public getRelations(userId: number): User[] {
-    const userRelations = this.getUserByIdWithRelations(userId);
-    if (userRelations) {
-      const relationsId = userRelations.getRelations();
-      return relationsId
-        .map((id) => this.getUserById(id.value))
-        .filter((user): user is User => user !== null);
-    }
-    return [];
+  delete(id: IdUser): void {
+    this.users = this.users.filter((usr) => !usr.id.equals(id));
   }
 }
